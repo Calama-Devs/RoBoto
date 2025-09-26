@@ -66,3 +66,51 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 - json (enabled by default - don't turn it off)
 - [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
 - [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+
+
+- composer install
+- arquivo env:
+            #--------------------------------------------------------------------
+            # ENVIRONMENT
+            #--------------------------------------------------------------------
+            
+            CI_ENVIRONMENT = development
+            
+            #--------------------------------------------------------------------
+            # APP
+            #--------------------------------------------------------------------
+            
+            app.baseURL = 'http://localhost/roboto/public/'
+            app.forceGlobalSecureRequests = false
+            app.CSPEnabled = false
+            
+            #--------------------------------------------------------------------
+            # DATABASE
+            #--------------------------------------------------------------------
+            
+            #para conectar corretamente ao banco de dados
+            database.default.hostname = localhost
+            database.default.database = roboto
+            database.default.username = root
+            database.default.password =
+            database.default.DBDriver = MySQLi
+            database.default.DBPrefix =
+            database.default.port = 3306
+            
+            #--------------------------------------------------------------------
+            # ENCRYPTION
+            #--------------------------------------------------------------------
+            
+            encryption.key = hex2bin:224cc288d29ed893ddb1c8c6062a1c9f4366f43dc787c85e143e8537d50e3788
+            #--------------------------------------------------------------------
+            # SESSION
+            #--------------------------------------------------------------------
+            
+            # session.driver = 'CodeIgniter\Session\Handlers\FileHandler'
+            # session.savePath = null
+            
+            #--------------------------------------------------------------------
+            # LOGGER
+            #--------------------------------------------------------------------
+            
+            logger.threshold = 4
