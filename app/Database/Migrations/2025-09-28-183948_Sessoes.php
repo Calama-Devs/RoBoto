@@ -38,7 +38,7 @@ class Sessoes extends Migration
                 'null' => true
             ],
         ]);
-        
+
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('contato_id', 'contatos', 'id');
         $this->forge->createTable('sessoes');
@@ -46,6 +46,6 @@ class Sessoes extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('sessoes');
+        $this->forge->dropTable('sessoes', true, true);
     }
 }

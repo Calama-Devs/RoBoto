@@ -41,6 +41,6 @@ class Contatos extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('contatos');
+        $this->forge->dropTable('contatos', true, true);
     }
 }

@@ -41,6 +41,6 @@ class Embeddings extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('embeddings');
+        $this->forge->dropTable('embeddings', true, true);
     }
 }

@@ -39,6 +39,6 @@ class MetaDados extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('meta_dados');
+        $this->forge->dropTable('meta_dados', true, true);
     }
 }

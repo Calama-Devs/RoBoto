@@ -54,6 +54,6 @@ class Mensagens extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('mensagens');
+        $this->forge->dropTable('mensagens', true, true);
     }
 }

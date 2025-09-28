@@ -46,6 +46,6 @@ class MensagensAgendadas extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('mensagens_agendadas');
+        $this->forge->dropTable('mensagens_agendadas', true, true);
     }
 }

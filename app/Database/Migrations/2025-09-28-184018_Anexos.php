@@ -35,6 +35,6 @@ class Anexos extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('anexos');
+        $this->forge->dropTable('anexos', true, true);
     }
 }
