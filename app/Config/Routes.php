@@ -7,6 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
+//Rota Webhook
+$routes->post('webhook/response', 'WebhookController::response');
+
 $routes->group('faiss-loader', function($routes) {
     $routes->get('add', 'FaissLoader::addDoc');
     $routes->get('query', 'FaissLoader::queryDoc');
@@ -23,3 +26,4 @@ $routes->group('faiss-meta', function($routes) {
     $routes->get('add', 'FaissMetaTest::add');
     $routes->get('query', 'FaissMetaTest::query');
 });
+
