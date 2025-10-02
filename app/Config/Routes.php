@@ -6,6 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('/view-verifica-contato', 'Home::viewVerificaContato');
+$routes->post('/verifica-contato', 'Home::verifyPhone');
 
 $routes->group('faiss-loader', function($routes) {
     $routes->get('add', 'FaissLoader::addDoc');
