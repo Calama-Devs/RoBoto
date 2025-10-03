@@ -6,6 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('/view-verify-phone', 'Home::viewVerificaContato');
+$routes->post('/verify-phone', 'Home::verifyPhone');
 
 //Rota Webhook
 $routes->post('webhook/response', 'WebhookController::response');
