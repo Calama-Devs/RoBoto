@@ -16,7 +16,7 @@ class Home extends BaseController
 
     public function viewVerificaContato(): string
     {
-        return view('verifica-contato');
+        return view('verify-phone');
     }
 
     public function verifyPhone()
@@ -35,35 +35,44 @@ class Home extends BaseController
         // $row = $this->findByPhone($phoneSent);
 
         $spreadsheet = IOFactory::load($spreadsheetStudents);
-        $sheet  = $spreadsheet->getActiveSheet();
-        $rows   = $sheet->toArray(null, true, true, true);
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = $sheet->toArray(null, true, true, true);
 
         if (empty($rows)) return [];
 
         $header = array_shift($rows);
+        
         $map = $this->mapHeader($header);
+        // dd($map);
 
-        $idx = [];
+        $lookupKey = $this->digitsOnly($phoneSent);
+        $matches = [];
+
         foreach ($rows as $r) {
-            $nome      = trim((string)($r[$map['nome']] ?? ''));
-            $matricula = trim((string)($r[$map['matricula']] ?? ''));
-            $foneRaw   = trim((string)($r[$map['telefone']] ?? ''));
+            $name = trim((string)($r[$map['name']] ?? ''));
+            $studentIdNumber = trim((string)($r[$map['student_id_number']] ?? ''));
+            $foneRaw = trim((string)($r[$map['phone']] ?? ''));
+            $situation = trim((string)($r[$map['situation']] ?? ''));
 
-            if ($matricula === '' && $foneRaw === '') continue;
+            if ($studentIdNumber === '' && $foneRaw === '') continue;
 
             $foneKey = $this->digitsOnly($foneRaw);
-            if ($foneKey === '') continue;
-
-            $idx[$foneKey] = [
-                'nome'              => $nome,
-                'matricula'         => $matricula,
-                'telefone_original' => $foneRaw,
-            ];
+            if ($foneKey !== '' && $foneKey === $lookupKey) {
+                $matches[] = [
+                    'name' => $name,
+                    'student_id_number' => $studentIdNumber,
+                    'phone' => $foneRaw,
+                    'situation' => $situation,
+                ];
+            }
         }
 
-        // dd($idx);
-        return $idx;
+        $studentId = [];
+        foreach($matches as $m) {
+            if($m['situation'] == 1) $studentId = $m['student_id_number']; 
+        }
 
+        dd($studentId);
     }
 
     public function findByPhone($phoneClear) {
@@ -87,18 +96,22 @@ class Home extends BaseController
     }
 
     public function mapHeader($header) {
-        $headerClear = function ($s) {
-            $s = mb_strtolower(trim((string)$s));
-            $s = str_replace(['á','à','ã','â','é','ê','í','ó','ô','õ','ú','ç'], ['a','a','a','a','e','e','i','o','o','o','u','c'], $s);
-            return preg_replace('/[^a-z0-9]/', '', $s);
+
+        $headerClear = function ($nameCol) {
+            $nameCol = mb_strtolower(trim((string)$nameCol));
+            $nameCol = str_replace(['á','à','ã','â','é','ê','í','ó','ô','õ','ú','ç'], ['a','a','a','a','e','e','i','o','o','o','u','c'], $nameCol);
+            return preg_replace('/[^a-z0-9]/', '', $nameCol);
         };
 
         $map = [];
+
         foreach ($header as $col => $label) {
             $key = $headerClear($label);
-            if ($key === 'nome') $map['nome'] = $col;
-            if (in_array($key, ['matricula','matrícula'])) $map['matricula'] = $col;
-            if (in_array($key, ['telefone','fone','celular'])) $map['telefone'] = $col;
+
+            if ($key === 'nome') $map['name'] = $col;
+            if (in_array($key, ['matricula'])) $map['student_id_number'] = $col;
+            if (in_array($key, ['telefone','fone','celular'])) $map['phone'] = $col;
+            if (in_array($key, ['situação','situacao','situacão'])) $map['situation'] = $col;
         }
 
         return $map;
