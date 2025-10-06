@@ -7,6 +7,8 @@ class WebhookController extends BaseController {
 
     public function response() {
         $dados = $this->request->getJSON(true);
-        dd($dados);
+
+        //Teste
+        log_message('debug', 'Webhook recebido: ' . json_encode($dados));
     }
 }
