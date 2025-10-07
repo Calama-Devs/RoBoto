@@ -14,13 +14,12 @@ class WebhookController extends BaseController {
             $contato = explode('@', $dados['data']['key']['remoteJid'])[0]; //Número do contato
             $mensagem = $dados['data']['message']['conversation']; //Mensagem recebida
 
-            echo "Contato: " . $contato . "<br \>";
-            echo "Mensagem: " . $mensagem . "<br \>";
+            echo "Contato: " . $contato . "\n\r";
+            echo "Mensagem: " . $mensagem . "\n\r";        
         }
 
         //Teste
         //log_message('error', 'Webhook recebido: ' . json_encode($dados));
     }
 }
-
 
