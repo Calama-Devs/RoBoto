@@ -38,12 +38,7 @@ class ContatosModel extends Model
     ];
 
     public function create(string $contato) {
-        try {
-            $dados['telefone'] = $contato;
-            return $this->insert($dados);
-        } catch(\Exception $error) {
-            log_message('error', $error->getMessage());
-            return redirect()->back()->with('error', 'Erro ao criar contato: ' . $error->getMessage());
-        }
+        $dados['telefone'] = $contato;
+        return $this->insert($dados);
     }
 }
