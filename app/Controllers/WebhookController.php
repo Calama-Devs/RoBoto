@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
 
+use App\Models\ContatosModel;
+
 class WebhookController extends BaseController {
     public function index() {
         //
@@ -7,6 +9,8 @@ class WebhookController extends BaseController {
 
     public function response()
     {
+        $contatoModel = new ContatosModel();
+
         $dados = $this->request->getJSON(true);
 
         if($dados['event'] === 'messages.upsert')
@@ -15,7 +19,9 @@ class WebhookController extends BaseController {
             $mensagem = $dados['data']['message']['conversation']; //Mensagem recebida
 
             echo "Contato: " . $contato;
-            echo "Mensagem: " . $mensagem;        
+            echo "Mensagem: " . $mensagem;
+
+            $contatoModel->create($contato);
         }
 
         //Teste
