@@ -24,6 +24,7 @@ class Contatos extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 13,
                 'unique' => true,
+                'null' => true,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
