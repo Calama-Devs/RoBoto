@@ -11,7 +11,7 @@ class WebhookController extends BaseController {
 
         if($dados['event'] === 'messages.upsert')
         {
-            $contato = $dados['data']['key']['remoteJid']; //Número do contato
+            $contato = explode('@', $dados['data']['key']['remoteJid'])[0]; //Número do contato
             $mensagem = $dados['data']['message']['conversation']; //Mensagem recebida
 
             echo "Contato: " . $contato . "\n";
