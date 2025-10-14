@@ -38,7 +38,7 @@ class ContatosModel extends Model
     ];
 
     public function create(string $contato) {
-        $dados['telefone'] = $contato;
+        $dados = ['telefone' => $contato, 'matricula' => '12345678'];
         return $this->insert($dados);
     }
 }
