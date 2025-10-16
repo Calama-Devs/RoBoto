@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Cassandra\Date;
+use CodeIgniter\Model;
 
 class MensagensModel extends Model
 {
@@ -12,7 +12,7 @@ class MensagensModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['contato_id', 'texto', 'remetente', 'score_filtro', 'sessao_id'];
+    protected $allowedFields = ['contato_id', 'texto', 'remetente', 'score_filtro', 'sessao_id', 'timestamp'];
     protected bool $allowEmptyInserts = true;
 
     //Dates
@@ -22,9 +22,9 @@ class MensagensModel extends Model
     protected $validationRules = [
       'contato_id'   => 'numeric|max_length[15]',
       'texto'        => 'required|string',
-      'remetente'    => 'required|max_length(100)',
+      'remetente'    => 'required|max_length[100]',
       'score_filtro' => 'numeric',
-      'sessao_id'    => 'numeric|max_length(11)',
+      'sessao_id'    => 'numeric|max_length[11]',
     ];
 
     protected $validationMessages = [
@@ -45,16 +45,14 @@ class MensagensModel extends Model
         ],
         'sessao_id'    => [
             'numeric' => 'O campo sessao_id deve ser numérico',
-            'max_length' => 'O campo sessao_id deve ter no máximo 100 caracteres.'
+            'max_length' => 'O campo sessao_id deve ter no máximo 11 caracteres.'
         ],
     ];
 
     public function create(string $mensagem) {
         $dados = [
             'texto' => $mensagem,
-            'remetente' => 'Ana Clara',
             'contato_id' => 1,
-            'timestamp' => 2025-10-16,
         ];
 
         return $this->insert($dados);
