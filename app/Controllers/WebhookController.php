@@ -24,12 +24,12 @@ class WebhookController extends BaseController {
             echo "Contato: " . $contato;
             echo "Mensagem: " . $mensagem;
 
-            $dados = [
+            $dadosSalvar = [
                 'texto' => $mensagem,
                 'contato_id' => 1,
             ];
 
-            if ($contatoModel->create($contato) && $mensagemModel->insert($dados)) {
+            if ($contatoModel->create($contato) && $mensagemModel->insert($dadosSalvar)) {
                 echo 'Contato salvo com sucesso!';
             } else {
                 echo 'Erro ao salvar contato';
