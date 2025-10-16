@@ -27,6 +27,7 @@ class WebhookController extends BaseController {
             $dadosSalvar = [
                 'texto' => $mensagem,
                 'contato_id' => 1,
+                'remetente' => 'Ana Clara'
             ];
 
             if ($contatoModel->create($contato) && $mensagemModel->insert($dadosSalvar)) {

@@ -13,7 +13,7 @@ class MensagensModel extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = ['contato_id', 'texto', 'remetente', 'score_filtro', 'sessao_id', 'timestamp'];
-    protected bool $allowEmptyInserts = true;
+    protected bool $allowEmptyInserts = false;
 
     //Dates
     protected $useTimestamps = true;
