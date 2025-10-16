@@ -16,7 +16,7 @@ class MensagensModel extends Model
     protected bool $allowEmptyInserts = false;
 
     //Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
 
     //Validation
 //    protected $validationRules = [
