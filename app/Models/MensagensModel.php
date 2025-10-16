@@ -12,7 +12,7 @@ class MensagensModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['texto'];
+    protected $allowedFields = ['texto', 'timestamp'];
     protected bool $allowEmptyInserts = false;
 
     //Dates

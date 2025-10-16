@@ -19,7 +19,8 @@ class WebhookController extends BaseController {
         if($dados['event'] === 'messages.upsert')
         {
             $contato = explode('@', $dados['data']['key']['remoteJid'])[0]; //Número do contato
-            $mensagem = $dados['data']['message']['conversation']; //Mensagem recebida
+            $mensagem = $dados['data']['message']['conversation']; //Mensagem
+            $timestamp = $dados['data']['messageTimestamp']; //TimeStamp
 
             echo "Contato: " . $contato;
             echo "Mensagem: " . $mensagem;
@@ -27,6 +28,7 @@ class WebhookController extends BaseController {
             $dadosSalvar = [
                 'texto' => $mensagem,
                 'contato_id' => 1,
+                'timestamp' => date('Y-m-d H:i:s', $timestamp),
             ];
 
             if (!$contatoModel->create($contato)) {
