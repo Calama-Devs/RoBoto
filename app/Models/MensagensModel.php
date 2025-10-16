@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Cassandra\Date;
+
 class MensagensModel extends Model
 {
     protected $table = 'mensagens';
@@ -52,6 +54,7 @@ class MensagensModel extends Model
             'texto' => $mensagem,
             'remetente' => 'Ana Clara',
             'contato_id' => 1,
+            'timestamp' => 2025-10-16,
         ];
 
         return $this->insert($dados);
