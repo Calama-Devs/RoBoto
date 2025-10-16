@@ -26,9 +26,7 @@ class WebhookController extends BaseController {
 
             $dados = [
                 'texto' => $mensagem,
-                'remetente' => 'Ana Clara',
                 'contato_id' => 1,
-                'timestamp' => (Time::now()->getTimestamp())
             ];
 
             if ($contatoModel->create($contato) && $mensagemModel->insert($dados)) {
