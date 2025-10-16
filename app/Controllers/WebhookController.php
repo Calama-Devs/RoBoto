@@ -2,6 +2,7 @@
 
 use App\Models\ContatosModel;
 use App\Models\MensagensModel;
+use CodeIgniter\I18n\Time;
 
 class WebhookController extends BaseController {
     public function index() {
@@ -23,7 +24,14 @@ class WebhookController extends BaseController {
             echo "Contato: " . $contato;
             echo "Mensagem: " . $mensagem;
 
-            if ($contatoModel->create($contato) && $mensagemModel->create($mensagem)) {
+            $dados = [
+                'texto' => $mensagem,
+                'remetente' => 'Ana Clara',
+                'contato_id' => 1,
+                'timestamp' => (Time::now()->getTimestamp())
+            ];
+
+            if ($contatoModel->create($contato) && $mensagemModel->insert($dados)) {
                 echo 'Contato salvo com sucesso!';
             } else {
                 echo 'Erro ao salvar contato';
