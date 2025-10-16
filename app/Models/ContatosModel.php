@@ -15,7 +15,7 @@ class ContatosModel extends Model
     protected $allowedFields = ['telefone', 'matricula'];
 
     //Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
 
     //Validation
     protected $validationRules = [
