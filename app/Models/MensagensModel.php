@@ -22,7 +22,7 @@ class MensagensModel extends Model
     protected $validationRules = [
       'contato_id'   => 'numeric|max_length[15]',
       'texto'        => 'required|string',
-      'remetente'    => 'required|max_length[100]',
+      'remetente'    => 'max_length[100]',
       'score_filtro' => 'numeric',
       'sessao_id'    => 'numeric|max_length[11]',
     ];
@@ -37,14 +37,13 @@ class MensagensModel extends Model
             'string'   => 'O campo texto deve ser texto',
         ],
         'remetente'    => [
-            'required'   => 'O campo remetente é obrigatório',
             'max_length' => 'O remetente deve ter no máximo 100 caracteres',
         ],
         'score_filtro' => [
             'numeric' => 'O campo score_filtro deve ser numérico'
         ],
         'sessao_id'    => [
-            'numeric' => 'O campo sessao_id deve ser numérico',
+            'numeric'    => 'O campo sessao_id deve ser numérico',
             'max_length' => 'O campo sessao_id deve ter no máximo 11 caracteres.'
         ],
     ];
