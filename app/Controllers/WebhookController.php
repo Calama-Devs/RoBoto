@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\ContatosModel;
+use App\Models\MensagensModel;
 
 class WebhookController extends BaseController {
     public function index() {
@@ -10,6 +11,7 @@ class WebhookController extends BaseController {
     public function response()
     {
         $contatoModel = new ContatosModel();
+        $mensagemModel = new MensagensModel();
 
         $dados = $this->request->getJSON(true);
 
@@ -21,7 +23,7 @@ class WebhookController extends BaseController {
             echo "Contato: " . $contato;
             echo "Mensagem: " . $mensagem;
 
-            if ($contatoModel->create($contato)) {
+            if ($contatoModel->create($contato) && $mensagemModel->create($mensagem)) {
                 echo 'Contato salvo com sucesso!';
             } else {
                 echo 'Erro ao salvar contato';

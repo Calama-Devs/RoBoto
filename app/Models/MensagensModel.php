@@ -46,4 +46,14 @@ class MensagensModel extends Model
             'max_length' => 'O campo sessao_id deve ter no máximo 100 caracteres.'
         ],
     ];
+
+    public function create(string $mensagem) {
+        $dados = [
+            'texto' => $mensagem,
+            'remetente' => "Ana Clara",
+            'contato_id' => 1,
+        ];
+
+        return $this->insert($dados);
+    }
 }
