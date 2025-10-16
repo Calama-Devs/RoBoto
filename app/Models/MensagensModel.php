@@ -14,7 +14,7 @@ class MensagensModel extends Model
     protected bool $allowEmptyInserts = true;
 
     //Dates
-    protected $useTimesstamps = true;
+    protected $useTimestamps = true;
 
     //Validation
     protected $validationRules = [
@@ -50,7 +50,7 @@ class MensagensModel extends Model
     public function create(string $mensagem) {
         $dados = [
             'texto' => $mensagem,
-            'remetente' => "Ana Clara",
+            'remetente' => 'Ana Clara',
             'contato_id' => 1,
         ];
 
