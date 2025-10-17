@@ -48,10 +48,11 @@ class MensagensModel extends Model
 //        ],
 //    ];
 
-    public function create(string $mensagem) {
+    public function create(string $mensagem, string $timestamp) {
         $dados = [
             'texto' => $mensagem,
             'contato_id' => 1,
+            'timestamp' => date('Y-m-d H:i:s', $timestamp),
         ];
 
         return $this->insert($dados);
